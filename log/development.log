@@ -8875,3 +8875,458 @@ Completed 500 Internal Server Error in 10ms (ActiveRecord: 1.4ms | Allocations: 
 ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed):
   
 app/controllers/tags_controller.rb:10:in `destroy'
+Started GET "/" for ::1 at 2020-08-07 18:08:04 +0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 11.2ms | Allocations: 4322)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 31.2ms | ActiveRecord: 1.0ms | Allocations: 15016)
+
+
+Started GET "/articles/5" for ::1 at 2020-08-07 18:08:07 +0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:10
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:12
+  Rendered collection of articles/_comment.html.erb [4 times] (Duration: 2.8ms | Allocations: 1436)
+  Rendered comments/_form.html.erb (Duration: 4.1ms | Allocations: 1439)
+  Rendered articles/show.html.erb within layouts/application (Duration: 62.0ms | Allocations: 16651)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 78ms (Views: 65.6ms | ActiveRecord: 2.0ms | Allocations: 25190)
+
+
+Started GET "/tags/2" for ::1 at 2020-08-07 18:08:09 +0500
+Processing by TagsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:3:in `show'
+  Rendering tags/show.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" INNER JOIN "taggings" ON "articles"."id" = "taggings"."article_id" WHERE "taggings"."tag_id" = ?[0m  [["tag_id", 2]]
+  ↳ app/views/tags/show.html.erb:4
+  Rendered tags/show.html.erb within layouts/application (Duration: 8.9ms | Allocations: 2538)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 18.6ms | ActiveRecord: 0.5ms | Allocations: 7163)
+
+
+Started DELETE "/tags/2" for ::1 at 2020-08-07 18:08:12 +0500
+Processing by TagsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"GT4DNrW+kYm4JLgoR0yEeW84eEA2GsQ8vVHTxHjjKuaZMguYdsRJQJd9o3TrOIvTsGuEHpy7/l7wXnaOKhDbvQ==", "id"=>"2"}
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:9:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+  [1m[36mTag Destroy (1.0ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.4ms | Allocations: 4671)
+
+
+  
+ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed):
+  
+app/controllers/tags_controller.rb:10:in `destroy'
+Started GET "/articles/5" for ::1 at 2020-08-07 18:08:15 +0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:10
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:12
+  Rendered collection of articles/_comment.html.erb [4 times] (Duration: 1.0ms | Allocations: 292)
+  Rendered comments/_form.html.erb (Duration: 1.9ms | Allocations: 477)
+  Rendered articles/show.html.erb within layouts/application (Duration: 17.0ms | Allocations: 3628)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 23.0ms | ActiveRecord: 1.0ms | Allocations: 7771)
+
+
+Started DELETE "/articles/5" for ::1 at 2020-08-07 18:08:20 +0500
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"f0+ZOX4Wtsn/9DSavAvVVDY3Vu4g5FjxRFeMCW7aPO3/Q5GXvWxuANCtL8YQf9r+6WSqsIpFYpMJWClDPCnNtg==", "id"=>"5"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:24:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (4.0ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (0.1ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (0.1ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (0.1ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mArticle Destroy (0.7ms)[0m  [1m[31mDELETE FROM "articles" WHERE "articles"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[35m (3.6ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 9.1ms | Allocations: 9509)
+
+
+  
+ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed):
+  
+app/controllers/articles_controller.rb:25:in `destroy'
+Started GET "/" for ::1 at 2020-08-07 18:08:26 +0500
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 936)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 11.6ms | ActiveRecord: 0.2ms | Allocations: 4449)
+
+
+Started GET "/" for ::1 at 2020-08-07 18:12:19 +0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 8.6ms | Allocations: 3912)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 14.4ms | ActiveRecord: 1.0ms | Allocations: 9225)
+
+
+Started GET "/" for ::1 at 2020-08-07 18:12:22 +0500
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 936)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.2ms | Allocations: 4425)
+
+
+Started GET "/articles/5" for ::1 at 2020-08-07 18:12:23 +0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:10
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:12
+  Rendered collection of articles/_comment.html.erb [4 times] (Duration: 1.4ms | Allocations: 287)
+  Rendered comments/_form.html.erb (Duration: 1.7ms | Allocations: 562)
+  Rendered articles/show.html.erb within layouts/application (Duration: 27.9ms | Allocations: 11251)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 31.5ms | ActiveRecord: 2.7ms | Allocations: 18989)
+
+
+Started GET "/tags/2" for ::1 at 2020-08-07 18:12:25 +0500
+Processing by TagsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:3:in `show'
+  Rendering tags/show.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" INNER JOIN "taggings" ON "articles"."id" = "taggings"."article_id" WHERE "taggings"."tag_id" = ?[0m  [["tag_id", 2]]
+  ↳ app/views/tags/show.html.erb:4
+  Rendered tags/show.html.erb within layouts/application (Duration: 7.5ms | Allocations: 2371)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 16ms (Views: 13.1ms | ActiveRecord: 0.5ms | Allocations: 6566)
+
+
+Started DELETE "/tags/2" for ::1 at 2020-08-07 18:12:28 +0500
+Processing by TagsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"XurKjFoh6LKmxC6zHeheZmWHXpG1vuk8ap3T10KjF+3e5sIimVswe4mdNe+xnFHMutSizx8f014nknadEFDmtg==", "id"=>"2"}
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:9:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+  [1m[36mTagging Load (0.3ms)[0m  [1m[34mSELECT "taggings".* FROM "taggings" WHERE "taggings"."tag_id" = ?[0m  [["tag_id", 2]]
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+  [1m[36mTagging Destroy (0.3ms)[0m  [1m[31mDELETE FROM "taggings" WHERE "taggings"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+  [1m[35m (10.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tags_controller.rb:10:in `destroy'
+Redirected to http://localhost:3000/tags/2
+Completed 302 Found in 37ms (ActiveRecord: 11.8ms | Allocations: 8788)
+
+
+Started GET "/tags/2" for ::1 at 2020-08-07 18:12:28 +0500
+Processing by TagsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:3:in `show'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.1ms | Allocations: 1105)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Tag with 'id'=2):
+  
+app/controllers/tags_controller.rb:3:in `show'
+Started GET "/tags/2" for ::1 at 2020-08-07 18:13:39 +0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TagsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:3:in `show'
+Completed 404 Not Found in 7ms (ActiveRecord: 0.9ms | Allocations: 2975)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Tag with 'id'=2):
+  
+app/controllers/tags_controller.rb:3:in `show'
+Started GET "/" for ::1 at 2020-08-07 18:13:46 +0500
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 10.3ms | Allocations: 3688)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 13.7ms | ActiveRecord: 3.2ms | Allocations: 8971)
+
+
+Started GET "/articles/5" for ::1 at 2020-08-07 18:13:50 +0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:4
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:10
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:12
+  Rendered collection of articles/_comment.html.erb [4 times] (Duration: 1.0ms | Allocations: 287)
+  Rendered comments/_form.html.erb (Duration: 1.3ms | Allocations: 561)
+  Rendered articles/show.html.erb within layouts/application (Duration: 21.6ms | Allocations: 9749)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 42ms (Views: 25.6ms | ActiveRecord: 1.9ms | Allocations: 17328)
+
+
+Started GET "/tags/1" for ::1 at 2020-08-07 18:13:51 +0500
+Processing by TagsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:3:in `show'
+  Rendering tags/show.html.erb within layouts/application
+  [1m[36mArticle Load (1.5ms)[0m  [1m[34mSELECT "articles".* FROM "articles" INNER JOIN "taggings" ON "articles"."id" = "taggings"."article_id" WHERE "taggings"."tag_id" = ?[0m  [["tag_id", 1]]
+  ↳ app/views/tags/show.html.erb:4
+  Rendered tags/show.html.erb within layouts/application (Duration: 7.9ms | Allocations: 2371)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 19ms (Views: 15.7ms | ActiveRecord: 1.6ms | Allocations: 6447)
+
+
+Started DELETE "/tags/1" for ::1 at 2020-08-07 18:13:54 +0500
+Processing by TagsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"HfvJwQ7ZNAWiswmKxPu3Z7Oz4KCcw7kCB02mW4bPlaOd98FvzaPszI3qEtZoj7jNbOAc/jZig2BKQgMR1Dxk+A==", "id"=>"1"}
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:11:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTagging Load (0.2ms)[0m  [1m[34mSELECT "taggings".* FROM "taggings" WHERE "taggings"."tag_id" = ?[0m  [["tag_id", 1]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTagging Destroy (0.2ms)[0m  [1m[31mDELETE FROM "taggings" WHERE "taggings"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[35m (10.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 29ms (ActiveRecord: 11.2ms | Allocations: 8373)
+
+
+Started GET "/articles" for ::1 at 2020-08-07 18:13:54 +0500
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 936)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 15ms (Views: 14.0ms | ActiveRecord: 0.2ms | Allocations: 4454)
+
+
+Started GET "/articles/5" for ::1 at 2020-08-07 18:13:58 +0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:10
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:12
+  Rendered collection of articles/_comment.html.erb [4 times] (Duration: 1.8ms | Allocations: 282)
+  Rendered comments/_form.html.erb (Duration: 1.5ms | Allocations: 470)
+  Rendered articles/show.html.erb within layouts/application (Duration: 8.8ms | Allocations: 3497)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 16ms (Views: 13.9ms | ActiveRecord: 0.5ms | Allocations: 7546)
+
+
+Started GET "/articles/5/edit" for ::1 at 2020-08-07 18:14:02 +0500
+Processing by ArticlesController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:31:in `edit'
+  Rendering articles/edit.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/models/article.rb:8:in `collect'
+  Rendered articles/_form.html.erb (Duration: 6.3ms | Allocations: 2374)
+  Rendered articles/edit.html.erb within layouts/application (Duration: 7.3ms | Allocations: 2656)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 16ms (Views: 13.3ms | ActiveRecord: 0.3ms | Allocations: 6804)
+
+
+Started PATCH "/articles/5" for ::1 at 2020-08-07 18:14:06 +0500
+Processing by ArticlesController#update as HTML
+  Parameters: {"authenticity_token"=>"YBiAT+s1/i64+gC8k1owgTGkSaDrmNbGKNwfgJxwiXaOTVvkHbCvvnpVasml6elSfa+9x0gZ5RQmWJgh7GWXkA==", "article"=>{"tag_list"=>"ruby, technology", "title"=>"Edit Article", "body"=>"zdddddffff"}, "commit"=>"Update Article", "id"=>"5"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:34:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/article.rb:15:in `block in tag_list='
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."name" = ? LIMIT ?[0m  [["name", "ruby"], ["LIMIT", 1]]
+  ↳ app/models/article.rb:15:in `block in tag_list='
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."name" = ? LIMIT ?[0m  [["name", "technology"], ["LIMIT", 1]]
+  ↳ app/models/article.rb:15:in `block in tag_list='
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/models/article.rb:16:in `tag_list='
+  [1m[36mTagging Create (0.3ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["tag_id", 3], ["article_id", 5], ["created_at", "2020-08-07 13:14:06.806479"], ["updated_at", "2020-08-07 13:14:06.806479"]]
+  ↳ app/models/article.rb:16:in `tag_list='
+  [1m[36mTagging Create (0.2ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["tag_id", 4], ["article_id", 5], ["created_at", "2020-08-07 13:14:06.811714"], ["updated_at", "2020-08-07 13:14:06.811714"]]
+  ↳ app/models/article.rb:16:in `tag_list='
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/articles_controller.rb:35:in `update'
+Redirected to http://localhost:3000/articles/5
+Completed 302 Found in 27ms (ActiveRecord: 7.2ms | Allocations: 8960)
+
+
+Started GET "/articles/5" for ::1 at 2020-08-07 18:14:06 +0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:10
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:12
+  Rendered collection of articles/_comment.html.erb [4 times] (Duration: 1.8ms | Allocations: 282)
+  Rendered comments/_form.html.erb (Duration: 1.0ms | Allocations: 461)
+  Rendered articles/show.html.erb within layouts/application (Duration: 14.3ms | Allocations: 3572)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 22.6ms | ActiveRecord: 0.8ms | Allocations: 7643)
+
+
+Started GET "/tags/4" for ::1 at 2020-08-07 18:14:08 +0500
+Processing by TagsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:3:in `show'
+  Rendering tags/show.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" INNER JOIN "taggings" ON "articles"."id" = "taggings"."article_id" WHERE "taggings"."tag_id" = ?[0m  [["tag_id", 4]]
+  ↳ app/views/tags/show.html.erb:4
+  Rendered tags/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1096)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 14ms (Views: 11.5ms | ActiveRecord: 0.3ms | Allocations: 5116)
+
+
+Started DELETE "/tags/4" for ::1 at 2020-08-07 18:14:13 +0500
+Processing by TagsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"7B60ELbZTUrl9AnM2QZocw29s/W3onvH/KJjpBhT/ZBsEry+daOVg8qtEpB1cmfZ0u5Pqx0DQaWxrcbuSqAMyw==", "id"=>"4"}
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:11:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTagging Load (0.1ms)[0m  [1m[34mSELECT "taggings".* FROM "taggings" WHERE "taggings"."tag_id" = ?[0m  [["tag_id", 4]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTagging Destroy (0.3ms)[0m  [1m[31mDELETE FROM "taggings" WHERE "taggings"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTagging Destroy (0.2ms)[0m  [1m[31mDELETE FROM "taggings" WHERE "taggings"."id" = ?[0m  [["id", 6]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTagging Destroy (0.2ms)[0m  [1m[31mDELETE FROM "taggings" WHERE "taggings"."id" = ?[0m  [["id", 11]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+  [1m[35m (12.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tags_controller.rb:12:in `destroy'
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 28ms (ActiveRecord: 13.8ms | Allocations: 7659)
+
+
+Started GET "/articles" for ::1 at 2020-08-07 18:14:13 +0500
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 936)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.2ms | Allocations: 4463)
+
+
+Started GET "/articles/5" for ::1 at 2020-08-07 18:14:17 +0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:10
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/views/articles/show.html.erb:12
+  Rendered collection of articles/_comment.html.erb [4 times] (Duration: 0.9ms | Allocations: 282)
+  Rendered comments/_form.html.erb (Duration: 1.2ms | Allocations: 460)
+  Rendered articles/show.html.erb within layouts/application (Duration: 13.1ms | Allocations: 3533)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 20.3ms | ActiveRecord: 0.6ms | Allocations: 7585)
+
+
+Started DELETE "/articles/5" for ::1 at 2020-08-07 18:14:24 +0500
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Q5gKntHvCUNOB1n5gJMVk2bL/8IoOmU8AilAB5eaqRnDlAIwEpXRimFeQqUs5xo5uZgDnIKbX15PJuVNxWlYQg==", "id"=>"5"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:24:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 5]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (2.0ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (0.2ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (0.2ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mComment Destroy (0.2ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[36mArticle Destroy (0.9ms)[0m  [1m[31mDELETE FROM "articles" WHERE "articles"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/articles_controller.rb:25:in `destroy'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 4.1ms | Allocations: 9486)
+
+
+  
+ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed):
+  
+app/controllers/articles_controller.rb:25:in `destroy'
