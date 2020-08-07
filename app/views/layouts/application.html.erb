@@ -1,0 +1,17 @@
+    
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blogger</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<p class="flash">
+  <%= flash.notice %>
+</p>
+<%= yield %>
+
+</body>
